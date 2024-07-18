@@ -1,0 +1,24 @@
+SQL> SELECT
+  2       o.order_id,
+  3       o.order_date,
+  4       o.customer_id,
+  5       o.payment_id,
+  6       o.total_amount,
+  7       od.product_id,
+  8       p.product_name
+  9   FROM
+ 10        orders o
+ 11    JOIN
+ 12        order_detail od ON o.order_id = od.order_id
+ 13    JOIN
+ 14        product p ON od.product_id = p.product_id
+ 15    WHERE
+ 16        o.order_date BETWEEN TO_DATE('01-MAY-23', 'DD-MON-YY') AND TO_DATE('28-MAY-23', 'DD-MON-YY')
+ 17        AND od.product_id = '1120004';
+
+  ORDER_ID ORDER_DAT CUSTOMER_ID PAYMENT_ID TOTAL_AMOUNT PRODUCT_ID PRODUCT_NAME                                                                                                                        
+---------- --------- ----------- ---------- ------------ ---------- -------------------------                                                                                                           
+   1110003 02-MAY-23       30001     202403        80000    1120004 Samsung galaxy s67                                                                                                                  
+   1110005 23-MAY-23       30002     202405       320000    1120004 Samsung galaxy s67                                                                                                                  
+
+SQL> spool off

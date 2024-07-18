@@ -1,0 +1,29 @@
+SQL> SELECT *
+  2   FROM (
+  3       SELECT
+  4           c.customer_id,
+  5           c.customer_name,
+  6           c.customer_category,
+  7           d.discount,
+  8           COUNT(o.order_id) AS orders_placed,
+  9           SUM(total_amount) - ((discount / 100) * SUM(o.total_amount)) AS amount_spent_after_discount
+ 10        FROM
+ 11            customer c
+ 12        JOIN
+ 13            orders o ON c.customer_id = o.customer_id
+ 14        JOIN
+ 15            discount d ON d.customer_category = c.customer_category
+ 16        WHERE
+ 17            EXTRACT(MONTH FROM order_date) = 8
+ 18        GROUP BY
+ 19            c.customer_id, c.customer_name, c.customer_category, d.discount
+ 20        ORDER BY
+ 21            amount_spent_after_discount, orders_placed
+ 22    )
+ 23    WHERE ROWNUM <= 1;
+
+CUSTOMER_ID CUSTOMER_NAME                  CUSTOMER_CATEGORY    DISCOUNT ORDERS_PLACED AMOUNT_SPENT_AFTER_DISCOUNT                                                                                      
+----------- ------------------------------ ------------------ ---------- ------------- ---------------------------                                                                                      
+      30001 Arun                           R                           0             1                      320000                                                                                      
+
+SQL> spool off

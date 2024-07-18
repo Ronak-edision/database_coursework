@@ -1,0 +1,27 @@
+SQL> SELECT
+  2        c.customer_id,
+  3        c.customer_name,
+  4        c.customer_address,
+  5        c.customer_category,
+  6        o.last_order_date
+  7    FROM (
+  8        SELECT
+  9            customer_id,
+ 10             MAX(order_date) AS last_order_date
+ 11         FROM
+ 12             orders
+ 13         GROUP BY
+ 14             customer_id
+ 15         ORDER BY
+ 16             last_order_date DESC
+ 17     ) o
+ 18     JOIN
+ 19         customer c ON o.customer_id = c.customer_id
+ 20     WHERE
+ 21         ROWNUM = 1;
+
+CUSTOMER_ID CUSTOMER_NAME                  CUSTOMER_ADDRESS   CUSTOMER_CATEGORY  LAST_ORDE                                                                                                              
+----------- ------------------------------ ------------------ ------------------ ---------                                                                                                              
+      30005 Joshi                          Kupandol           R                  23-DEC-23                                                                                                              
+
+SQL> spool off

@@ -1,0 +1,8 @@
+SQL> select * from customer where customer_category like '%S%';
+
+CUSTOMER_ID CUSTOMER_NAME                  CUSTOMER_ADDRESS     CUSTOMER_CATEGORY                                                                                                                       
+----------- ------------------------------ -------------------- --------------------                                                                                                                    
+      30002 Ness                           PatanDhoka           S                                                                                                                                       
+      30006 Dhakal                         Maitighar            S                                                                                                                                       
+
+SQL> spool off

@@ -1,0 +1,39 @@
+SQL> SELECT
+  2        c.customer_id,
+  3        c.customer_name,
+  4        c.customer_address,
+  5        c.customer_category,
+  6        o.order_id,
+  7        o.order_date,
+  8        o.payment_id,
+  9        o.total_amount
+ 10     FROM
+ 11         customer c
+ 12     LEFT JOIN
+ 13         orders o ON c.customer_id = o.customer_id
+ 14     ORDER BY
+ 15         c.customer_id, o.order_id;
+
+CUSTOMER_ID CUSTOMER_NAME                  CUSTOMER_ADDRESS     CUSTOMER_CATEGORY      ORDER_ID ORDER_DAT PAYMENT_ID TOTAL_AMOUNT                                                                       
+----------- ------------------------------ -------------------- -------------------- ---------- --------- ---------- ------------                                                                       
+      30001 Arun                           Kamalpokhari         R                       1110001 01-FEB-23     202401       260000                                                                       
+      30001 Arun                           Kamalpokhari         R                       1110003 02-MAY-23     202403        80000                                                                       
+      30001 Arun                           Kamalpokhari         R                       1110007 02-AUG-23     202407       320000                                                                       
+      30002 Ness                           PatanDhoka           S                       1110002 04-APR-23     202402       240000                                                                       
+      30002 Ness                           PatanDhoka           S                       1110005 23-MAY-23     202405       320000                                                                       
+      30003 Suyush                         KumariPati           V                       1110004 06-MAY-23     202404       480000                                                                       
+      30004 Ronak                          Pulchowk             V                                                                                                                                       
+      30005 Joshi                          Kupandol             R                      11100012 23-DEC-23    2024012       320000                                                                       
+      30006 Dhakal                         Maitighar            S                       1110006 29-MAY-23     202406       160000                                                                       
+      30007 Krishna                        MangalBazar          R                                                                                                                                       
+      30008 Shrestha                       Putalisadak          V                       1110008 06-AUG-23     202408       160000                                                                       
+      30008 Shrestha                       Putalisadak          V                       1110009 25-AUG-23     202409       160000                                                                       
+      30008 Shrestha                       Putalisadak          V                      11100013 22-AUG-23    2024013       120000                                                                       
+      30008 Shrestha                       Putalisadak          V                      11100014 29-AUG-23    2024014       760000                                                                       
+      30009 Shrestha                       PatanDhoka           V                                                                                                                                       
+     300010 Patrick                        Durbar Marga         R                      11100010 12-NOV-23    2024010        80000                                                                       
+     300010 Patrick                        Durbar Marga         R                      11100011 16-DEC-23    2024011       240000                                                                       
+
+17 rows selected.
+
+SQL> spool off

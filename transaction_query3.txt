@@ -1,0 +1,14 @@
+SQL> select v.vendor_id, v.vendor_name, v.vendor_contact , count(p.product_id) as
+  2        product_count
+  3        from vendor v
+  4      join product p on v.vendor_id= p.vendor_id
+  5        group by v.vendor_id, v.vendor_name, v.vendor_contact
+  6        having count(p.product_id)>3;
+
+ VENDOR_ID VENDOR_NAME                                        VENDOR_CONTACT PRODUCT_COUNT                                                                                                              
+---------- -------------------------------------------------- -------------- -------------                                                                                                              
+     20001 Ram                                                    9876543210             4                                                                                                              
+      2003 Shyam                                                  9863018296             4                                                                                                              
+     20002 Hari                                                   9869860145             4                                                                                                              
+
+SQL> spool off

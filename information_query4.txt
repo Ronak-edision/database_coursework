@@ -1,0 +1,8 @@
+SQL> select * from product where substr(product_name,2,1)='a' and stock_level>50;
+
+PRODUCT_ID PRODUCT_CATEGORY          PRODUCT_DESCRIPTION            PRICE STOCK_LEVEL  VENDOR_ID PRODUCT_NAME                                                                                           
+---------- ------------------------- ------------------------- ---------- ----------- ---------- --------------------------------------------------                                                     
+   1120008 fridge                    QLED 4K UHD                    45000          80       2003 Samsung FrostGuard 8000                                                                                
+  11200012 camera                    DSLR Camera                    70000          68       2005 Canon EOS Rebel T7i                                                                                    
+
+SQL> spool off

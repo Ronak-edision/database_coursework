@@ -1,0 +1,11 @@
+SQL> select * from orders where total_amount >= (select avg(total_amount) from orders);
+
+  ORDER_ID ORDER_DAT CUSTOMER_ID PAYMENT_ID TOTAL_AMOUNT                                                                                                                                                
+---------- --------- ----------- ---------- ------------                                                                                                                                                
+   1110004 06-MAY-23       30003     202404       480000                                                                                                                                                
+   1110005 23-MAY-23       30002     202405       320000                                                                                                                                                
+   1110007 02-AUG-23       30001     202407       320000                                                                                                                                                
+  11100012 23-DEC-23       30005    2024012       320000                                                                                                                                                
+  11100014 29-AUG-23       30008    2024014       760000                                                                                                                                                
+
+SQL> spool off

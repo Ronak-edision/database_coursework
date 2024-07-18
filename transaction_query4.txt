@@ -1,0 +1,26 @@
+SQL> SELECT *
+  2  FROM (
+  3      SELECT
+  4          p.product_id,
+  5          p.product_name,
+  6          p.product_category,
+  7          p.price,
+  8          COUNT(od.order_id) AS total_orders
+  9      FROM
+ 10          product p
+ 11      JOIN
+ 12          order_detail od ON p.product_id = od.product_id
+ 13      GROUP BY
+ 14          p.product_id, p.product_name, p.product_category, p.price
+ 15      ORDER BY
+ 16          total_orders DESC
+ 17  )
+ 18  WHERE ROWNUM <= 3;
+
+PRODUCT_ID PRODUCT_NAME                                       PRODUCT_CATEGORY               PRICE TOTAL_ORDERS                                                                                         
+---------- -------------------------------------------------- ------------------------- ---------- ------------                                                                                         
+   1120008 Samsung FrostGuard 8000                            fridge                         45000            5                                                                                         
+   1120005 Mi Mi 10 Pro                                       phone                          45000            4                                                                                         
+   1120004 Samsung galaxy s67                                 phone                          80000            3                                                                                         
+
+SQL> spool off

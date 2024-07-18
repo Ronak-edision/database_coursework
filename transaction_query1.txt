@@ -1,0 +1,26 @@
+SQL> SELECT
+  2       TO_CHAR(o.order_date, 'YYYY-MM') AS month,
+  3       SUM(o.total_amount - (o.total_amount * COALESCE(d.discount, 0) / 100)) AS total_revenue
+  4   FROM
+  5       orders o
+  6   JOIN
+  7       customer c ON o.customer_id = c.customer_id
+  8   LEFT JOIN
+  9       discount d ON c.customer_category = d.customer_category
+ 10    GROUP BY
+ 11        TO_CHAR(o.order_date, 'YYYY-MM')
+ 12    ORDER BY
+ 13        month;
+
+MONTH   TOTAL_REVENUE                                                                                                                                                                                   
+------- -------------                                                                                                                                                                                   
+2023-02        260000                                                                                                                                                                                   
+2023-04        228000                                                                                                                                                                                   
+2023-05        968000                                                                                                                                                                                   
+2023-08       1400000                                                                                                                                                                                   
+2023-11         80000                                                                                                                                                                                   
+2023-12        560000                                                                                                                                                                                   
+
+6 rows selected.
+
+SQL> spool off
